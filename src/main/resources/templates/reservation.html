@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронь</title>
+    <style type="text/css">/* Стили для заголовка */
+      body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+}
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Стили для формы */
+form {
+  margin: 0 auto;
+  width: 50%;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+form p {
+  margin: 10px 0;
+}
+
+form label {
+  display: inline-block;
+  width: 150px;
+  font-weight: bold;
+}
+
+form input[type="text"], form input[type="date"], form input[type="time"], form select {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form input[type="submit"] {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #ff6600;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: #cc5500;
+}
+</style>
+</head>
+<body>
+<h1>Бронирование столика</h1>
+<p th:text="${error}">...</p>
+
+<form action="#" th:action="@{reservation}" th:object="${ResForm}" method="post">
+    <h2>Детали записи</h2>
+    <p>Имя<input type="text" th:field="*{reservedBy}" required/></p>
+    <p>Дата <input type="date" th:field="*{dateOfRes}" required/></p>
+    <p>Время <input type="time" th:field="*{timeOfRes}" required/></p>
+    <p>Столик <select name="tabless" th:field="*{table_id}" datatype="int">
+        <option th:each="resTable: ${resTable}"
+                th:value="${resTable.id}"
+                th:utext="|${resTable.tableName}|"></option>
+    </select></p>
+    <p>Примечания <input type="text" th:field="*{notes}"/></p>
+    <p>Телефон <input type="text" th:field="*{phoneNumber}" required></p>
+    <p><input type="submit" value="Записаться"/></p>
+
+</form>
+</body>
+</html>

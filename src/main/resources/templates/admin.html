@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Забронированые столы</title>
+  <link rel="stylesheet" th:href="@{/special.css}" href="static/style.css">
+  <style type="text/css">
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    padding: 20px 0;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+table th {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+table td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+  </style>
+</head>
+<body>
+<h1>Забронированные столы</h1>
+<br>
+<table style="width: 40vw;">
+  <tr>
+    <th>Имя клиента</th>
+    <th>Столик</th>
+    <th>Дата</th>
+    <th>Время (в час)</th>
+    <th>Примечания</th>
+    <th>Номер телефона</th>
+  </tr>
+  <tr th:each="res, iter:${reservation}">
+    <td th:utext="${res.reservedBy}">...</td>
+    <td th:utext="${resTable[iter.index].tableName}">...</td>
+    <td th:utext="${res.dateOfRes}">...</td>
+    <td th:utext="${res.timeOfRes}">...</td>
+    <td th:utext="${res.notes}">...</td>
+    <td th:utext="${res.phoneNumber}">...</td>
+  </tr>
+</table>
+
+</body>
+</html>

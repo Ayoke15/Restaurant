@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml"
+
+
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Столы</title>
+    <style type="text/css">
+        body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #f2f2f2;
+}
+
+h1 {
+  font-size: 32px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+<h1>Столы для бронирования</h1>
+<br>
+<table>
+    <tr>
+    <th>Столик</th>
+    <th>Количество мест</th>
+
+    </tr>
+    <tr th:each="table:${ResTableList}">
+        <td th:utext="${table.tableName}">...</td>
+        <td th:utext="${table.numberOfSeats}">...</td>
+    </tr>
+</table>
+
+</body>
+</html>
